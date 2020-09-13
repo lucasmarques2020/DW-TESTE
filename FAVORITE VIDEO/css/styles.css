@@ -53,69 +53,193 @@
     font-family: 'poppins'. sans-serif;
 }
 
-.form{
-    position: relative;
-    width: 350px;
-    padding: 40px 40px 60px;
-    background: #131419;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: -5px -5px 10px rgba(255,255,255, 0.05),
-                 5px 5px 15px  rgba(0,0,100, 0.8);
-}
-.form h2{
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-}
-.form .input{
-    text-align: left;
-    margin-top: 40px;
-}
-.form .input .inputBox{
-    margin-top: 20px;
-}
-.form .input .inputBox label{
-    display: block;
-    margin-bottom: 5px;
-    font-size: 18px;
-}
-.form .input .inputBox input{
-    width: 100%;
-    height: 50px;
-    background: transparent;
-    border: none;
-    outline: none;
-    border-radius: 40px;
-    padding: 5px 15px;
-    color: black;
-    font-size: 18px;
-    color:#0975f2;
-    box-shadow: inset -2px -2px 6px rgba(255,255,255, 0.1),
-                inset  2px 2px 6px  rgba(2,2,2, 0.8);
+section{
     transition: 0.3s;
 }
-.form .input .inputBox input[type="submit"]{
-    margin-top: 20px;
-    box-shadow:  -2px -2px 6px rgba(255,255,255, 0.1),
-                  2px 2px 6px  rgba(2,2,2, 0.8);
+.banner{
+    position: absolute;
+    right: 0;
+    width: 100%;
+    min-height: 100vh;
+    padding: 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    transition: 0.5;
 }
-.form .input .inputBox input[type="submit"]:active{
+.banner.active{
+    transition: 0.3s;
+    right: 300px;
+}
+section header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+.logo{
+    margin-top: 10px; 
+    margin-left: 10px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.logo:hover{
+    color: red;
+}
+.toggle{
+    position: absolute;
+    right: 0px;
+    top:0;
+    width: 60px;
+    height: 60px;
+    background: url(../assets/img/menu.png);
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position: center;
+    cursor: pointer;
+}
+.toggle:hover{
+    background: url(../assets/img/menu_red.png);
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.toggle.active{
+    background: url(../assets/img/close.png);
+    background-repeat: no-repeat;
+    background-size: 24px;
+    background-position: center;
+    cursor: pointer;
+}
+.toggle.active:hover{
+    background: url(../assets/img/close_red.png);
+    background-repeat: no-repeat;
+    background-size: 24px;
+    background-position: center;
+    cursor: pointer;
+}
+section video{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.overlay{
+    position: absolute;
+    left:0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    mix-blend-mode: overlay;
+}
+.texto{
+    position: relative;
+    z-index: 10;
+}
+.texto h2{
+    font-size: 6em;
+    font-weight: 800;
+    color: white;
+    line-height: 1em;
+    text-transform: uppercase;
+    font-family: sans-serif;
+}
+.texto h3{
+    font-size: 4em;
+    font-weight: 700;
+    color: white;
+    line-height: 1em;
+    text-transform: uppercase;
+    font-family: sans-serif;
+}
+.texto p{
+    position: relative;
+    font-size: 1.1em;
+    margin: 20px 0;
+    font-weight: 400;
+    max-width: 700px;
+    color: white;
+    font-family: sans-serif;
+}
+.texto a{
+    font-family: sans-serif;
+    border-radius: 5px 20px;
+    display: inline-block;
+    font-size: 1.1em;
+    background: red;
+    padding: 15px 35px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 10px;
+    color: white;
+    letter-spacing: 2px;
+    transition: 0.5s;
+    
+}
+.texto a:hover{
+    
+    background: #292121;
+    color: white;
+    text-decoration: none;
+}
+.menu{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    transition: .5s;
+}
+.menu ul{
+    width: 100%;
+    background: white;
+    position: relative;
+    transition: .5s;
+}
 
-    color: #104786;
-    margin-top: 20px;
-    box-shadow:  inset -2px -2px 6px rgba(255,255,255, 0.1),
-                  inset 2px 2px 6px  rgba(2,2,2, 0.8);
+.menu ul li{
+    padding: 10px;
+    width: 100%;
+    margin-top: 40px;
+    position: relative;
+    list-style: none; 
+    text-align: center;
+    transition: .5s;
 }
-.forget{
-    margin-top: 30px;
-    color: #0975f2;
+.menu ul li:hover{
+    transition: .5s;
+    color: white;
+    box-shadow: -5px 5px 8px black;
+    background: red;
 }
-.forget a{
-    color: grey;
+.menu ul li a{
+    width: 100%;
+    text-decoration: none;
+    font-size: 24px;
+    color: black;
+    transition: .5s;
 }
-.forget a:hover{
-    color: #0975f2;
+.menu ul li a:hover{
+    transition: .5s;
+    color: white;
+    background: red;
+    width: 100%;
 }
 html {
   font-family: sans-serif;
@@ -138,13 +262,87 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #0975f2;
+  color: red;
   background: linear-gradient(to bottom, rgba(2, 2, 2, 0.8) 0%, rgba(0, 0, 0, 0.8) 100%), url("../assets/img/bg-masthead.jpg");
   background-repeat: no-repeat;
   background-attachment:fixed;
   background-size: cover;
 }
-
+@media(max-width: 910px){
+    header .toggle{
+        padding: 5% !important;
+    }
+    .banner{
+        padding: 10%;   
+    }
+    .banner h2, h3{
+        font-size: 100%;   
+    }
+}
+@media(max-width: 500px){
+    header .toggle{
+        padding: 5% !important;
+    }
+    .menu{
+        padding: 10% !important;
+        width: !important;
+    }
+    .banner h3{
+        font-size: 100%;   
+    }
+    .banner h2{
+        font-size: 100%;   
+    }
+}
+@media(max-height: 600px){
+    header .toggle{
+        padding: 5% !important;
+    }
+    body{
+        padding: 10% !important;
+        width: !important;
+    }
+    .menu{
+        padding: 10% !important;
+        width: !important;
+    }
+    .banner{
+        padding: 10% !important;   
+    }
+    }
+@media(max-height: 500px){
+    header .toggle{
+        padding: 5% !important;
+    }
+    .menu{
+        padding: 20% !important;
+        width: !important;
+    }
+    .banner h2{
+        padding-top: 3%;
+        font-size: 100%;   
+    }
+    .banner h3{
+        font-size: 80%;
+    }
+    .banner a{
+        font-size: 70%;
+    }
+}
+@media(max-height: 400px){
+    header .toggle{
+        padding: 5% !important;
+    }
+    .banner h2{
+        font-size: 100%;   
+    }
+    .banner h3{
+        font-size: 100%;
+    }
+    .banner a{
+        font-size: 70%;
+    }
+}
 [tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0 !important;
 }
