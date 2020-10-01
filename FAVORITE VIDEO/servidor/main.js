@@ -1,4 +1,5 @@
 const { Usuario, Midia, Midia_Capa, Midia_Categoria, Midia_Local, sequelize} = require("./bd.js");
+const cors = require("cors");
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
@@ -6,6 +7,9 @@ const port = 3000;
 app.use(bodyParser.urlencoded({
     extended: false
 }))
+//cors
+app.use(cors());
+app.options('*', cors());
 //BUSCA_USUARIO
 app.get("/usuario", (req,res) =>{
     sequelize.sync().then(()=>{

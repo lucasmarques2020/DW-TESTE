@@ -27,7 +27,7 @@ class Midia_Local extends Model{}
     Midia_Local.init({localMidia: DataTypes.STRING},{sequelize,modelName: "Midia_Local"});
 
 class Usuario_Assinatura extends Model{}
-   Usuario_assinatura.init({ident_user: DataTypes.STRING, valor: DataTypes.FLOAT},{sequelize,modelName: "Usuario_Assinatura"});
+   Usuario_Assinatura.init({ident_user: DataTypes.STRING, valor: DataTypes.FLOAT},{sequelize,modelName: "Usuario_Assinatura"});
 
 //relacionamento usuario/midia -1/n
 Usuario.belongsToMany(Midia,{through:"midiaUsuario"});
@@ -40,14 +40,14 @@ Midia_Categoria.belongsToMany(Midia,{through:"midiacategoria"});
 //relacionamento midia/local -1/1
 Midia.hasOne(Midia_Local,{through:"midialocal"});
 //relacionamento usuario/midia -1/1
-Usuario.belongsToMany(Usuario_assinatura,{through:"assinaturausuario"});
+Usuario_Assinatura.belongsToMany(Usuario,{through:"assinaturausuario"});
 //sincronicar com o banco
 Usuario.sync();
 Midia.sync();
 Midia_Capa.sync();
 Midia_Categoria.sync();
 Midia_Local.sync();
-Usuario_assinatura.sync();
+Usuario_Assinatura.sync();
 
 module.exports = {
     Usuario,
@@ -55,6 +55,6 @@ module.exports = {
     Midia_Capa,
     Midia_Categoria,
     Midia_Local,
-    Usuario_assinatura,
+    Usuario_Assinatura,
     sequelize
 }
