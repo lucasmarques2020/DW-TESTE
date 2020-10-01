@@ -26,8 +26,11 @@ class Midia_Categoria extends Model{}
 class Midia_Local extends Model{}
     Midia_Local.init({localMidia: DataTypes.STRING},{sequelize,modelName: "Midia_Local"});
 
+<<<<<<< HEAD
 class Usuario_Assinatura extends Model{}
    Usuario_Assinatura.init({ident_user: DataTypes.STRING, valor: DataTypes.FLOAT},{sequelize,modelName: "Usuario_Assinatura"});
+=======
+>>>>>>> 873aa09eb516a742ebfc580b2ddac2aa0933cdfa
 
 //relacionamento usuario/midia -1/n
 Usuario.belongsToMany(Midia,{through:"midiaUsuario"});
