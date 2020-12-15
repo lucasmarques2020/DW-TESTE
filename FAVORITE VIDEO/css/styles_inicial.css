@@ -76,6 +76,34 @@
 header .menu{
     position: absolute;
 }
+.usuario{
+        position: absolute;
+        height: 50px;
+        opacity: 100%;
+        z-index:1;
+        width: 50px;
+        margin-left: -8%;
+        margin-top: 2%;
+        cursor: pointer;
+}
+.usuariover{
+        opacity: 0%;
+        z-index:1;
+        position: absolute;
+        height: 50px;
+        width: 50px;
+        margin-left: -8%;
+        margin-top: 2%;
+        cursor: pointer;
+}
+.usuariover:hover{
+    transition: .5s;
+    opacity: 100%;
+}
+.usuario:hover{
+    transition: .5s;
+    opacity:0;
+}
 .menu ul{
     text-align: right;
     height: 100px;
