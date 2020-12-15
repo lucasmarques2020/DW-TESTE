@@ -1,4 +1,7 @@
 const { Usuario, Midia, Midia_Capa, Midia_Categoria, Midia_Local, sequelize} = require("./bd.js");
+const multer = require('multer');
+const multerConfig = require('./multer.config');
+const upload = multer(multerConfig);
 const cors = require("cors");
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -10,6 +13,23 @@ app.use(bodyParser.urlencoded({
 //cors
 app.use(cors());
 app.options('*', cors());
+
+app.post('/files', upload.single('midia'), (req, res) => {
+    const { file } = req;
+
+    if (file) {
+        return res.json({
+            file,
+            fileSaved: true,
+        });
+    }
+
+    return res.json({
+        error: 'Erro ao salvar o arquivo.',
+        fileSaved: false,
+    });
+});
+
 //BUSCA_USUARIO
 app.get("/usuario", (req,res) =>{
     sequelize.sync().then(()=>{
