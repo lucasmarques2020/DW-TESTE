@@ -138,11 +138,14 @@ header input{
     border-radius: 30px;
 }
 header input{
-   margin-right: 10px;
+    margin-right: 10px;
+    outline: none;
 }
 header input[placeholder]{
     padding: 10px;
+    border: none;
 }
+
 .categorias{
     padding: 0px;
     margin:0px;
