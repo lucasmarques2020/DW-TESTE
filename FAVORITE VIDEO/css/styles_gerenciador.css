@@ -81,11 +81,18 @@ input[type=search] {
     height: 30px;
 }
 .menu ul li{
+    color: red;
     font-size: 30px;
     position: absolute;
     top: 20%;
     left: 10;
     list-style: none;
+    text-decoration: none;
+    transition: 0.5s;
+}
+.menu ul li:hover{
+    transition: 0.5s;
+    color: white;
 }
 .table{
     background: white;
