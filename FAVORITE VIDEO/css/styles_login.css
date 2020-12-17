@@ -52,8 +52,23 @@
     box-sizing: border-box;
     font-family: 'poppins'. sans-serif;
 }
-
-
+.emailverifique{
+    outline: none;
+    border-radius: 10px;
+    height: 40px;
+    width: 100%;
+}
+.btn1{
+    color: white;
+    border-radius: 5px;
+    width: 200px;
+    height: 40px;
+    background-color: red;
+    transition: .5s;
+}
+.btn1:hover{
+    background-color: grey;
+}
 html {
   font-family: sans-serif;
   line-height: 1.15;
