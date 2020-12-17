@@ -52,6 +52,10 @@
     box-sizing: border-box;
     font-family: 'poppins'. sans-serif;
 }
+
+.input_usu {
+    border-radius: 10px;
+}
 .menu{
     position: fixed;
     display: inline-block;
@@ -70,6 +74,31 @@
     border-radius: 100px;
     outline: none;
 }
+
+.btn1{
+  color: white;
+  border-radius: 5px;
+  width: 200px;
+  height: 40px;
+  background-color: red;
+  transition: .5s;
+}
+.btn1:hover{
+  background-color: grey;
+}
+
+.btn2{
+  color: white;
+  border-radius: 5px;
+  width: 200px;
+  height: 40px;
+  background-color: gray;
+  transition: .5s;
+}
+.btn2:hover{
+  background-color: red;
+}
+
 ::placeholder{
     color: #acaaaa;
 }

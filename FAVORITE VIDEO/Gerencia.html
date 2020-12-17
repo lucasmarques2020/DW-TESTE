@@ -27,35 +27,66 @@
                 <input type = "search" placeholder = "pesquisar">
             </ul>
         </div>
-        <table class="table"  id = "tb">
-        <thead class="thead-dark">
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Senha</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody>
-            <script>
-                const tb_get = document.getElementById("tb");
-                $.getJSON('http://localhost:3000/usuario', function(data) {
-                    for(let usuario of data){
-                        var numeroLinhas = tb_get.rows.length;
-                        var linha = tb_get.insertRow(numeroLinhas);
-                        var celula1 = linha.insertCell(0);
-                        var celula2 = linha.insertCell(1);   
-                        var celula3 = linha.insertCell(2);
-                        var celula4 = linha.insertCell(3);  
-                        celula1.innerHTML = usuario.id;
-                        celula2.innerHTML = usuario.nome;
-                        celula3.innerHTML = usuario.senha;
-                        celula4.innerHTML = usuario.email;
-                    }    
-                });
-            </script>
-        </tbody>
-    </table>
+        <div class="container">
+            <div class="row">
+                <table class="table"  id = "tb">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Senha</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <script>
+                            const tb_get = document.getElementById("tb");
+                            var row = tb_get.insertRow(1);
+                            var celula1 = row.insertCell(0);
+                            var celula2 = row.insertCell(1);
+                            var celula3 = row.insertCell(2);
+                            var celula4 = row.insertCell(3);
+                            $(document).ready(function() {
+                                $.getJSON('http://localhost:3000/usuario/' + localStorage.getItem("id"), function(data) {
+                                    celula1.innerHTML = data.id;
+                                    celula2.innerHTML = "<input class=\"input_usu\" id=\"usu_nome\" type=\"text\" value=\"" + data.nome + "\">";
+                                    celula3.innerHTML = "<input class=\"input_usu\" id=\"usu_senha\" type=\"password\" value=\"" + data.senha + "\">";
+                                    celula4.innerHTML = "<input class=\"input_usu\" id=\"usu_email\" type=\"text\" value=\"" + data.email + "\">";
+                                });
+                            });
+                        </script>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col col-8"></div>
+                <button onclick="salvar()" class="col col-2 btn1">Salvar</button><br>
+                <button onclick="cancelar()" class="col col-2 btn2">Cancelar</button>
+            </div>
+        </div>
+
+    
+
+    <script>
+        function salvar () {
+            $.post("http://localhost:3000/alterar/" + localStorage.getItem("id"),
+            {
+                nome_usuario: document.getElementById('usu_nome').value,
+                email_usuario: document.getElementById('usu_email').value,
+                senha_usuario: document.getElementById('usu_senha').value,
+            },
+            function(data, status){
+                if (status === 'success') {
+                    alert(data);
+                    window.location.href = "./inicial.html";
+                }
+            });
+        }
+
+        function cancelar () {
+            window.location.href = "./inicial.html";
+        }
+    </script>
        
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

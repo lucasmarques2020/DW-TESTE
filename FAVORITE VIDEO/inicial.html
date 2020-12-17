@@ -138,7 +138,7 @@
                             </button>
                           </div>
                           <div class="modal-body" id = "modal_corpo">
-                            <form id="envio_midia" method="post" enctype="multipart/form-data">
+                            <form id="envio_midia">
                               <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Título:</label>
                                 <input type="text" class="form-control" id="recipient-name">
@@ -149,7 +149,7 @@
                               </div>
                                 <div>
                                 <label>Foto de capa:</label>
-                                <input name="capa" type="file">
+                                <input id="fileupload" type="file" name="capa" />
                                 </div>
                                 <div>
                                 <label>Escolha a mídia:</label>
@@ -161,7 +161,7 @@
                               </div>
                               <div class="modal-footer" id = "butoes_modal">
                                 <button type="button" data-dismiss="modal">Fechar</button>
-                                <button type="submit">Cadastrar</button>
+                                <button type="button">Cadastrar</button>
                               </div>
                             </form>
                           </div>
@@ -169,11 +169,28 @@
                       </div>
                     </div>
                     <script>
+                      function uploadFile() {
+                          let formData = new FormData();           
+                          formData.append("file", fileupload.files[0]);
+                          
+                          $.ajax({
+                            url: "http://localhost:3000/file",
+                            type: 'POST',
+                            data: formData,
+                            success: function(data) {
+                                alert(data)
+                            },
+                            cache: false,
+                            contentType: false,
+                            processData: false
+                          });
+                      }
                       $("#envio_midia").submit(function() {
+                      uploadFile();
                       var formData = new FormData(this);
 
                       $.ajax({
-                          url: window.location.pathname,
+                          url: "http://localhost:3000/cadastro_titulo",
                           type: 'POST',
                           data: formData,
                           success: function(data) {

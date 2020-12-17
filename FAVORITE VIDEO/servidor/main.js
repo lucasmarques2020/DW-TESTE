@@ -1,7 +1,15 @@
 const { Usuario, Midia, Midia_Capa, Midia_Categoria, Midia_Local, sequelize} = require("./bd.js");
-const multer = require('multer');
-const multerConfig = require('./multer.config');
-const upload = multer(multerConfig);
+const multer  = require('multer')
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname)
+    }
+})
+   
+const upload = multer({ storage: storage })
 const cors = require("cors");
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -14,20 +22,14 @@ app.use(bodyParser.urlencoded({
 app.use(cors());
 app.options('*', cors());
 
-app.post('/files', upload.single('midia'), (req, res) => {
-    const { file } = req;
-
-    if (file) {
-        return res.json({
-            file,
-            fileSaved: true,
-        });
+app.post("/file", upload.single("file"), function (req, res) {
+    const file = req.file
+    if (!file) {
+        const error = new Error('Please upload a file')
+        error.httpStatusCode = 400
+        return next(error)
     }
-
-    return res.json({
-        error: 'Erro ao salvar o arquivo.',
-        fileSaved: false,
-    });
+    res.send("Arquivo salvo.");
 });
 
 //BUSCA_USUARIO
@@ -37,7 +39,33 @@ app.get("/usuario", (req,res) =>{
             res.send(usuario);
         });
     });
+});
+
+//BUSCA_USUARIO_ID
+app.get("/usuario/:id", (req,res) =>{
+    let id = req.params.id;
+    console.log(req.params);
+    sequelize.sync().then(()=>{
+        Usuario.findOne({ where: { id } }).then((usuario)=>{
+            res.send(usuario);
         });
+    });
+});
+//BUSCA_USUARIO_LOGIN_SENHA
+app.post("/login", (req,res) =>{
+    let email = req.body.email;
+    let senha = req.body.senha;
+    console.log("email: " + email);
+    console.log("senha: " + senha);
+    sequelize.sync().then(()=>{
+        Usuario.findOne({ where: { email: email, senha: senha } }).then((usuario)=>{
+            res.send(usuario.dataValues);
+        }).catch(err => {
+            console.log(err);
+            res.send(err);
+        });
+    });
+});
 //CADASTRO_USUARIO
 app.post("/cadastro", (req,res) =>{
     let nome = req.body.nome_usuario;
